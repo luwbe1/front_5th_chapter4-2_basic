@@ -1,12 +1,20 @@
 async function loadProducts() {
-  const response = await fetch("https://fakestoreapi.com/products");
-  const products = await response.json();
-  displayProducts(products);
+  // fetch 오류 처리
+  try {
+    const response = await fetch("https://fakestoreapi.com/products");
+    if (!response.ok) throw new Error("Network response was not ok");
+
+    const products = await response.json();
+    displayProducts(products);
+  } catch (error) {
+    console.error("Failed to load products", error);
+  }
 }
 
 function displayProducts(products) {
   // Find the container where products will be displayed
   const container = document.querySelector("#all-products .container");
+  const fragment = document.createDocumentFragment();
 
   // Iterate over each product and create the HTML structure safely
   products.forEach((product) => {
@@ -55,14 +63,55 @@ function displayProducts(products) {
     productElement.appendChild(pictureDiv);
     productElement.appendChild(infoDiv);
 
-    // Append the new product element to the container
-    container.appendChild(productElement);
+    // 리플로우와 리페인트 줄이기
+    fragment.appendChild(productElement);
   });
+
+  // Append the new product element to the container
+  container.appendChild(fragment);
 }
 
 loadProducts();
 
 // Simulate heavy operation. It could be a complex price calculation.
-for (let i = 0; i < 10000000; i++) {
-  const temp = Math.sqrt(i) * Math.sqrt(i);
-}
+// for (let i = 0; i < 10000000; i++) {
+//   const temp = Math.sqrt(i) * Math.sqrt(i);
+// }
+window.onload = () => {
+  let status = "idle";
+  loadProducts();
+
+  let productSection = document.querySelector("#all-products");
+
+  // 무거운 작업을 chunk 단위로 나눠서 처리하는 함수
+  function heavyOperationChunked(start = 0, chunkSize = 100000) {
+    const end = start + chunkSize;
+    for (let i = start; i < end && i < 10000000; i++) {
+      const temp = Math.sqrt(i) * Math.sqrt(i);
+    }
+
+    if (end < 10000000) {
+      // 다음 chunk 처리
+      setTimeout(() => heavyOperationChunked(end, chunkSize), 0);
+    } else {
+      console.log("Heavy operation done!");
+    }
+  }
+
+  // 초기 로드 시에도 무거운 작업 수행
+  heavyOperationChunked();
+
+  window.onscroll = () => {
+    let position =
+      productSection.getBoundingClientRect().top -
+      (window.scrollY + window.innerHeight);
+
+    if (status === "idle" && position <= 0) {
+      status = "loading";
+      loadProducts();
+
+      // 스크롤에서 조건 만족 시에도 chunked 처리!
+      heavyOperationChunked();
+    }
+  };
+};
