@@ -7,7 +7,7 @@
 ### 1. 개선 이유
 
 - LCP (Largest Contentful Paint) 값이 14.56초로 기준을 크게 초과해 사용자 경험 저하 우려
-- **CLS (Cumulative Layout Shift)**도 경고 수치에 근접해 UI 안정성 이슈
+- CLS (Cumulative Layout Shift)도 경고 수치에 근접해 UI 안정성 이슈
 - Best Practices, Accessibility, SEO 등 전반적 지표도 낮게 나와 웹 표준/성능 개선 필요
 
 ### 2. 개선 방법
