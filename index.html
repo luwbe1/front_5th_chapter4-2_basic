@@ -81,9 +81,24 @@
     </header>
 
     <section class="hero">
-      <img class="desktop" src="images/Hero_Desktop.webp" />
-      <img class="mobile" src="images/Hero_Mobile.webp" />
-      <img class="tablet" src="images/Hero_Tablet.webp" />
+      <picture>
+        <source
+          srcset="Hero_Mobile.webp"
+          media="(max-width: 767px)"
+          type="image/webp"
+        />
+        <source
+          srcset="Hero_Tablet.webp"
+          media="(max-width: 1023px)"
+          type="image/webp"
+        />
+        <source
+          srcset="Hero_Desktop.webp"
+          media="(min-width: 1024px)"
+          type="image/webp"
+        />
+        <img src="Hero_Desktop.jpg" alt="VR Headset" />
+      </picture>
 
       <div class="hero-content">
         <div class="container">
