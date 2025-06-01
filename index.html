@@ -9,10 +9,18 @@
       href="https://fonts.googleapis.com/css?family=Heebo:300,400,600,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- <link rel="stylesheet" href="/css/styles.css" /> -->
+    <!-- CSS (렌더링 차단 최소화) -->
+    <link
+      rel="stylesheet"
+      href="/css/styles.css"
+      media="print"
+      onload="this.onload=null;this.media='all'"
+    />
+    <noscript><link rel="stylesheet" href="/css/styles.css" /></noscript>
     <!-- <link rel="stylesheet" type="text/css" href="/css/slick.css"/> -->
     <!-- Google Tag Manager -->
-    <script>
+    <script async>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
@@ -28,11 +36,12 @@
 
     <!-- Cookie Consent by FreePrivacyPolicy.com https://www.FreePrivacyPolicy.com -->
     <script
+      async
       type="text/javascript"
       src="//www.freeprivacypolicy.com/public/cookie-consent/4.1.0/cookie-consent.js"
       charset="UTF-8"
     ></script>
-    <script type="text/javascript" charset="UTF-8">
+    <script defer type="text/javascript" charset="UTF-8">
       cookieconsent.run({
         notice_banner_type: "simple",
         consent_type: "express",
@@ -83,21 +92,21 @@
     <section class="hero">
       <picture>
         <source
-          srcset="Hero_Mobile.webp"
+          srcset="images/Hero_Mobile.webp"
           media="(max-width: 767px)"
           type="image/webp"
         />
         <source
-          srcset="Hero_Tablet.webp"
+          srcset="images/Hero_Tablet.webp"
           media="(max-width: 1023px)"
           type="image/webp"
         />
         <source
-          srcset="Hero_Desktop.webp"
+          srcset="images/Hero_Desktop.webp"
           media="(min-width: 1024px)"
           type="image/webp"
         />
-        <img src="Hero_Desktop.jpg" alt="VR Headset" />
+        <img src="images/Hero_Desktop.webp" alt="VR Headset" />
       </picture>
 
       <div class="hero-content">
@@ -239,7 +248,7 @@
 
     <a href="#" id="open_preferences_center">Update cookies preferences</a>
 
-    <script type="text/javascript" src="/js/main.js"></script>
-    <script type="text/javascript" src="/js/products.js"></script>
+    <script type="text/javascript" src="/js/main.js" defer></script>
+    <script type="text/javascript" src="/js/products.js" defer></script>
   </body>
 </html>
