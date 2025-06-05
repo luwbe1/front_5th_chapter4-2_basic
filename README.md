@@ -30,34 +30,40 @@
 | DOM 렌더링                 | `documentFragment` 사용                    |
 | 연산 최적화                | 메인 스레드 블로킹 연산 chunk 처리         |
 
-- 이미지 포맷 변경 및 크기 명시
-  /images/ 디렉토리에 있는 이미지(Hero\__.webp, vr_.webp)는 기존 JPEG/PNG에서 .webp 포맷으로 변경되어 용량이 줄고, 로딩 속도 향상됨. <br>
-  <img> 태그에 width, height 속성을 명시하여 CLS(Cumulative Layout Shift)를 방지.
+##### 이미지 포맷 변경 및 크기 명시
 
-- 폰트 최적화
-  /css/fonts/에 직접 .ttf 폰트를 저장하고, 외부 Google Fonts 대신 preload 및 local font loading을 적용함으로써 외부 요청 지연 제거 및 초기 렌더링 속도 향상.
+/images/ 디렉토리에 있는 이미지(Hero\__.webp, vr_.webp)는 기존 JPEG/PNG에서 .webp 포맷으로 변경되어 용량이 줄고, 로딩 속도 향상됨. <br>
+<img> 태그에 width, height 속성을 명시하여 CLS(Cumulative Layout Shift)를 방지.
 
-- JavaScript 병렬 로딩 처리
-  /js/main.js, /js/products.js 파일을 <script defer>로 처리하여 렌더링 블로킹 제거. <br>
-  기존에는 <script>가 <head>에 있고 blocking으로 처리되어 LCP에 영향을 주었으나, defer 처리로 해결됨.
+##### 폰트 최적화
 
-- DOM 삽입 최적화
-  document.createDocumentFragment()를 사용해 여러 DOM 조작을 하나의 트랜잭션으로 처리함으로써 Reflow/Repaint 최소화.
+/css/fonts/에 직접 .ttf 폰트를 저장하고, 외부 Google Fonts 대신 preload 및 local font loading을 적용함으로써 외부 요청 지연 제거 및 초기 렌더링 속도 향상.
 
-- Lazy Loading 적용
-  <img loading="lazy"> 속성 적용하여, 사용자가 화면에 접근할 때만 이미지가 로드되도록 설정 → 불필요한 초기 트래픽 감소.
+##### JavaScript 병렬 로딩 처리
 
-- 쿠키 배너 최신화
-  termsfeed.com에서 불러오는 Cookie Consent 스크립트를 v4.2.0 최신 버전으로 교체하여 보안성과 퍼포먼스 모두 개선.
+/js/main.js, /js/products.js 파일을 <script defer>로 처리하여 렌더링 블로킹 제거. <br>
+기존에는 <script>가 <head>에 있고 blocking으로 처리되어 LCP에 영향을 주었으나, defer 처리로 해결됨.
 
-  ```html
-  <script
-    defer
-    type="text/javascript"
-    src="https://www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js"
-    charset="UTF-8"
-  ></script>
-  ```
+##### DOM 삽입 최적화
+
+document.createDocumentFragment()를 사용해 여러 DOM 조작을 하나의 트랜잭션으로 처리함으로써 Reflow/Repaint 최소화.
+
+##### Lazy Loading 적용
+
+<img loading="lazy"> 속성 적용하여, 사용자가 화면에 접근할 때만 이미지가 로드되도록 설정 → 불필요한 초기 트래픽 감소.
+
+##### 쿠키 배너 최신화
+
+termsfeed.com에서 불러오는 Cookie Consent 스크립트를 v4.2.0 최신 버전으로 교체하여 보안성과 퍼포먼스 모두 개선.
+
+```html
+<script
+  defer
+  type="text/javascript"
+  src="https://www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js"
+  charset="UTF-8"
+></script>
+```
 
 ### 4. 개선 후 향상된 지표
 
