@@ -1,6 +1,7 @@
 # 바닐라 JS 프로젝트 성능 개선
 
 - url: https://front-5th-chapter4-2-basic-ten.vercel.app/
+- https://front-5th-chapter4-2-basic-yubin-kims-projects-668d47e2.vercel.app/
 
 ## 성능 개선 보고서
 
